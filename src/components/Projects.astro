@@ -1,0 +1,120 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { projects } from '@/data/projects';
+---
+
+<Section id="projects" title="Projects" number="03" wide>
+  <ul class="project-grid">
+    {
+      projects.map((project) => (
+        <li class="card">
+          {project.image && <img class="card__image" src={project.image} alt="" loading="lazy" />}
+          <div class="card__body">
+            <div class="card__meta">
+              <h3>{project.title}</h3>
+              <span class="card__year">{project.year}</span>
+            </div>
+            <p>{project.description}</p>
+            <ul class="tag-list">
+              {project.tags.map((tag) => (
+                <li class="tag">{tag}</li>
+              ))}
+            </ul>
+          </div>
+          {project.links && (
+            <ul class="link-row card__links">
+              {project.links.map((link) => (
+                <li>
+                  <a href={link.href} target="_blank" rel="noopener">
+                    {link.label}
+                    <Icon name="arrow-up-right" size={14} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<style>
+  .project-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1.25rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -15px rgb(29 31 36 / 0.25);
+  }
+
+  .card__image {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .card__body {
+    padding: 1.5rem 1.5rem 1rem;
+    flex: 1;
+  }
+
+  .card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+
+  .card__year {
+    font-size: var(--text-sm);
+    color: var(--color-faint);
+  }
+
+  .card p {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .card__links {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .card__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card,
+    .card:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

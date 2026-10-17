@@ -1,0 +1,129 @@
+---
+import Section from './Section.astro';
+import { publications } from '@/data/publications';
+import { profile } from '@/data/profile';
+
+const typeLabel: Record<string, string> = {
+  journal: 'Journal',
+  conference: 'Conference',
+  preprint: 'Preprint',
+  thesis: 'Thesis',
+  other: 'Other',
+};
+
+// Group by year, newest first
+const byYear = Map.groupBy([...publications].sort((a, b) => b.year - a.year), (p) => p.year);
+---
+
+<Section id="publications" title="Publications" number="02">
+  {
+    [...byYear].map(([year, pubs]) => (
+      <div class="pub-year">
+        <h3>{year}</h3>
+        <ol class="pub-list">
+          {pubs.map((pub) => (
+            <li class:list={['pub', { 'pub--featured': pub.featured }]}>
+              <p class="pub__title">{pub.title}</p>
+              <p class="pub__authors">
+                {pub.authors.map((author, i) => (
+                  <>
+                    {author === profile.name ? <strong>{author}</strong> : author}
+                    {i < pub.authors.length - 1 && ', '}
+                  </>
+                ))}
+              </p>
+              <p class="pub__venue">
+                <span class="tag">{typeLabel[pub.type]}</span>
+                <em>{pub.venue}</em>
+              </p>
+              {pub.links && (
+                <ul class="link-row">
+                  {pub.links.map((link) => (
+                    <li>
+                      <a href={link.href} target="_blank" rel="noopener">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))
+  }
+</Section>
+
+<style>
+  .pub-year {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    color: var(--color-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .pub p {
+    margin: 0 0 0.3rem;
+  }
+
+  .pub--featured {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-accent);
+    margin-left: calc(-1rem - 2px);
+  }
+
+  .pub__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: 1.35;
+  }
+
+  .pub__authors {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .pub__authors strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .pub__venue {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .pub .link-row {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 560px) {
+    .pub-year {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .pub--featured {
+      margin-left: 0;
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { profile } from '@/data/profile';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container container--wide footer__inner">
+    <p>© {year} {profile.name}</p>
+    <nav aria-label="Legal">
+      <!-- In Austria (and Germany) a website usually needs an Impressum / Offenlegung. -->
+      <a href="/impressum">Impressum</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-line);
+    padding-block: 2rem;
+    font-size: var(--text-sm);
+    color: var(--color-faint);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer p {
+    margin: 0;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  a {
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-ink);
+    text-decoration: underline;
+  }
+</style>

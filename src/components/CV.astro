@@ -1,0 +1,116 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { cv } from '@/data/cv';
+import { profile } from '@/data/profile';
+import { inline } from '@/lib/inline';
+---
+
+<Section id="cv" title="CV" number="01">
+  {
+    cv.map((group) => (
+      <div class="cv-group">
+        <h3>{group.heading}</h3>
+        <ol class="cv-list">
+          {group.entries.map((entry) => (
+            <li class="cv-entry">
+              <span class="cv-entry__period">{entry.period}</span>
+              <div>
+                <p class="cv-entry__title">{entry.title}</p>
+                <p class="cv-entry__org">
+                  {entry.orgHref ? (
+                    <a href={entry.orgHref} target="_blank" rel="noopener">
+                      {entry.org}
+                    </a>
+                  ) : (
+                    entry.org
+                  )}
+                  {entry.location && <span> · {entry.location}</span>}
+                </p>
+                {entry.details && (
+                  <ul class="cv-entry__details">
+                    {entry.details.map((d) => (
+                      <li set:html={inline(d)} />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))
+  }
+
+  {
+    profile.cvPdf && (
+      <a class="button" href={profile.cvPdf} download>
+        <Icon name="download" size={16} />
+        Full CV (PDF)
+      </a>
+    )
+  }
+</Section>
+
+<style>
+  .cv-group {
+    margin-bottom: 3rem;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    margin-bottom: 1.25rem;
+  }
+
+  .cv-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cv-entry {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1rem;
+    border-top: 1px dashed var(--color-line);
+  }
+
+  .cv-entry:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .cv-entry p {
+    margin: 0;
+  }
+
+  .cv-entry__period {
+    font-size: var(--text-sm);
+    color: var(--color-faint);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.15rem;
+  }
+
+  .cv-entry__title {
+    font-weight: 600;
+  }
+
+  .cv-entry__org {
+    color: var(--color-muted);
+  }
+
+  .cv-entry__details {
+    margin-top: 0.4rem;
+    padding-left: 1.1rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 560px) {
+    .cv-entry {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

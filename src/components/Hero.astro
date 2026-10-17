@@ -1,0 +1,192 @@
+---
+// Profile / "About" section at the top of the page.
+import Icon from './Icon.astro';
+import { profile } from '@/data/profile';
+import { socials } from '@/data/socials';
+
+const initials = profile.name
+  .split(' ')
+  .map((part) => part[0])
+  .join('')
+  .slice(0, 2);
+---
+
+<section id="about" class="hero" aria-labelledby="about-title">
+  <div class="container container--wide hero__grid">
+    <div class="hero__avatar">
+      {
+        profile.photo ? (
+          <img src={profile.photo} alt={`Portrait of ${profile.name}`} width="240" height="240" />
+        ) : (
+          <span aria-hidden="true">{initials}</span>
+        )
+      }
+    </div>
+
+    <div class="hero__body">
+      <p class="hero__eyebrow">{profile.role} · {profile.affiliation}</p>
+      <h1 id="about-title">{profile.name}</h1>
+      <p class="hero__tagline">{profile.tagline}</p>
+
+      <p class="hero__location">
+        <Icon name="map-pin" size={16} />
+        {profile.location}
+      </p>
+
+      <div class="hero__bio">
+        {profile.bio.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <ul class="tag-list hero__interests" aria-label="Interests">
+        {profile.interests.map((interest) => <li class="tag">{interest}</li>)}
+      </ul>
+
+      <div class="hero__actions">
+        {
+          profile.cvPdf && (
+            <a class="button button--primary" href={profile.cvPdf} download>
+              <Icon name="download" size={16} />
+              Download CV
+            </a>
+          )
+        }
+        <a class="button" href="#contact">Get in touch</a>
+      </div>
+
+      <ul class="hero__socials" aria-label="Profiles">
+        {
+          socials.map((s) => (
+            <li>
+              <a href={s.href} aria-label={s.label} title={s.label} target={s.icon === 'email' ? undefined : '_blank'} rel="noopener">
+                <Icon name={s.icon} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 8vw, 6rem) var(--space-section);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: start;
+  }
+
+  .hero__avatar {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-accent-soft), var(--color-line));
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+  }
+
+  .hero__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__avatar span {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    color: var(--color-accent);
+  }
+
+  .hero__body {
+    max-width: var(--content-width);
+  }
+
+  .hero__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    margin-bottom: 1rem;
+  }
+
+  .hero__tagline {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  .hero__location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--text-sm);
+    color: var(--color-faint);
+    margin-bottom: 2rem;
+  }
+
+  .hero__bio {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__interests {
+    margin-bottom: 2rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero__socials {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-left: -0.5rem;
+  }
+
+  .hero__socials a {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    color: var(--color-muted);
+    transition:
+      color 0.15s,
+      background 0.15s;
+  }
+
+  .hero__socials a:hover {
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+
+  @media (max-width: 760px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+    .hero__avatar {
+      position: static;
+      width: 8.5rem;
+    }
+    .hero__avatar span {
+      font-size: 2.75rem;
+    }
+  }
+</style>

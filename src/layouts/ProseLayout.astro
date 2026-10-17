@@ -1,0 +1,46 @@
+---
+// Simple single-column layout for text pages (Impressum, privacy, 404, future blog posts, …).
+import BaseLayout from './BaseLayout.astro';
+import Footer from '@/components/Footer.astro';
+import { site } from '@/data/site';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title={`${title} · ${site.title}`}>
+  <div id="top"></div>
+  <main id="main" class="container prose">
+    <a class="back" href="/">← Back to home</a>
+    <h1>{title}</h1>
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .prose {
+    padding-block: 4rem 6rem;
+    min-height: 70vh;
+  }
+
+  .back {
+    display: inline-block;
+    font-size: var(--text-sm);
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    margin-bottom: 2rem;
+  }
+
+  .prose :global(h2) {
+    font-size: var(--text-lg);
+    margin: 2rem 0 0.75rem;
+  }
+</style>

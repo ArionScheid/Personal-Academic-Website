@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Design tokens — change the look of the whole site from here.
+   ========================================================================== */
+:root {
+  /* Colours */
+  --color-bg: #f8f6f1; /* off-white page background */
+  --color-surface: #fffdf9; /* cards */
+  --color-ink: #1d1f24; /* main text */
+  --color-muted: #5f6470; /* secondary text */
+  --color-faint: #8a8f99;
+  --color-line: #e4e0d6; /* borders / dividers */
+  --color-accent: #2f4a7a; /* links, highlights */
+  --color-accent-soft: #e6ebf3;
+
+  /* Typography */
+  --font-serif: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: clamp(2.25rem, 5vw, 3.25rem);
+
+  /* Layout */
+  --content-width: 46rem;
+  --wide-width: 64rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --header-height: 4rem;
+  --radius: 10px;
+
+  --space-section: clamp(4rem, 10vw, 7rem);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide {
+  max-width: calc(var(--wide-width) + 2 * var(--gutter));
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.4em 0.7em;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.link-row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: var(--text-sm);
+}
+
+.link-row a {
+  font-weight: 500;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: 500 var(--text-sm) / 1 var(--font-sans);
+  padding: 0.75em 1.2em;
+  border-radius: 999px;
+  border: 1px solid var(--color-ink);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.button:hover {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.button--primary {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.button--primary:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}

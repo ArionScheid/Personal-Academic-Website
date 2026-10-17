@@ -1,0 +1,98 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { socials } from '@/data/socials';
+---
+
+<Section id="contact" title="Contact" number="04">
+  <p class="intro">
+    The best way to reach me is by email. I'm always happy to talk about research, collaborations or anything
+    else. You can also find me on the platforms below.
+  </p>
+
+  <ul class="contact-list">
+    {
+      socials.map((s) => (
+        <li>
+          <a href={s.href} target={s.icon === 'email' ? undefined : '_blank'} rel="noopener">
+            <span class="contact__icon">
+              <Icon name={s.icon} />
+            </span>
+            <span class="contact__text">
+              <span class="contact__label">{s.label}</span>
+              <span class="contact__handle">{s.handle}</span>
+            </span>
+            <Icon name="arrow-up-right" size={16} class="contact__arrow" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<style>
+  .intro {
+    color: var(--color-muted);
+    margin-bottom: 2rem;
+  }
+
+  .contact-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0.75rem;
+  }
+
+  .contact-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+
+  .contact-list a:hover {
+    border-color: var(--color-accent);
+  }
+
+  .contact__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+
+  .contact__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .contact__label {
+    font-weight: 500;
+    font-size: var(--text-sm);
+  }
+
+  .contact__handle {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .contact-list :global(.contact__arrow) {
+    flex: none;
+    color: var(--color-faint);
+  }
+</style>

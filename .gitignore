@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# netlify
+.netlify/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
