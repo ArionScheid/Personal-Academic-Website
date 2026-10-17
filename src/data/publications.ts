@@ -6,9 +6,11 @@ export const publications: Publication[] = [
   {
     title: 'A First Decision Procedure for Almost-Sure Termination of Probabilistic Term Rewriting',
     authors: ['Jan-Christoph Kassing', 'Arion Scheid', 'Henri Nagel', 'Jürgen Giesl'],
-    venue: 'VeriProP 2026',
+    venue: 'VeriProP 2026: Workshop on Verification of Probabilistic Programs, FLoC 2026, Lisbon',
     year: 2026,
-    type: 'conference',
+    type: 'workshop',
+    href: 'https://veriprop.github.io/2026/',
+    note: 'Extended abstract and talk, no formal proceedings',
     featured: true,
     links: [
       { label: 'Paper', href: 'https://jckassing.com/files/paper/GroundDec_VeriProP26.pdf' },

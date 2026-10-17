@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     title: 'Vienna District Browser',
     description:
-      'A knowledge graph project built for a course at TU Wien, modelling and exploring information about Vienna’s districts.', // TODO: refine description
+      'Knowledge graph built for a course at TU Wien from Vienna’s public-transit (GTFS) and willhaben housing data, used to navigate and cluster the city’s districts through a web UI.',
     tags: ['Knowledge Graphs', 'Python'],
     year: '2026',
     links: [{ label: 'GitHub', href: 'https://github.com/ArionScheid/Vienna-District-Browser' }],
@@ -12,7 +12,7 @@ export const projects: Project[] = [
   {
     title: 'GNNExplainer: Seminar Study',
     description:
-      'Seminar work for “Theoretical Aspects of Machine Learning” at TU Wien, examining Ying et al.’s 2019 paper GNNExplainer: Generating Explanations for Graph Neural Networks, and a fatal flaw in the theory the paper rests upon.',
+      'Seminar study for “Theoretical Aspects of Machine Learning” at TU Wien on GNNExplainer (Ying et al., 2019): evaluated the method on a novel dataset and identified a fundamental flaw in the theory it rests on.',
     tags: ['Explainable AI', 'Graph Neural Networks', 'LaTeX'],
     year: '2026',
     links: [{ label: 'GitHub', href: 'https://github.com/ArionScheid/Seminar-in-AI' }],

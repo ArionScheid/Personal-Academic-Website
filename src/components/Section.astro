@@ -1,19 +1,17 @@
 ---
-// Shared wrapper for every page section: anchor id, numbered heading, consistent spacing.
+// Shared wrapper for every page section: anchor id, heading, consistent spacing.
 interface Props {
   id: string;
   title: string;
-  number?: string;
   wide?: boolean;
 }
 
-const { id, title, number, wide = false } = Astro.props;
+const { id, title, wide = false } = Astro.props;
 ---
 
 <section id={id} class="section" aria-labelledby={`${id}-title`}>
   <div class:list={['container', { 'container--wide': wide }]}>
     <header class="section__header">
-      {number && <span class="section__number">{number}</span>}
       <h2 id={`${id}-title`}>{title}</h2>
     </header>
     <slot />
@@ -27,17 +25,7 @@ const { id, title, number, wide = false } = Astro.props;
   }
 
   .section__header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
     margin-bottom: 2.5rem;
-  }
-
-  .section__number {
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-faint);
-    font-variant-numeric: tabular-nums;
   }
 
   h2 {

@@ -20,9 +20,7 @@ export interface Profile {
   role: string;
   affiliation: string;
   location: string;
-  /** Short one-liner shown under the name */
-  tagline: string;
-  /** Longer bio; each entry is rendered as its own paragraph */
+  /** Longer bio; each entry is rendered as its own paragraph. Supports inline links: [text](url) */
   bio: string[];
   /** Path under /public (e.g. '/images/me.jpg'), or null to show initials instead */
   photo: string | null;
@@ -61,7 +59,11 @@ export interface Publication {
   authors: string[];
   venue: string;
   year: number;
-  type: 'journal' | 'conference' | 'preprint' | 'thesis' | 'other';
+  type: 'journal' | 'conference' | 'workshop' | 'preprint' | 'thesis' | 'other';
+  /** Optional link for the title, e.g. the venue or program page */
+  href?: string;
+  /** Short note shown after the venue, e.g. the presentation format */
+  note?: string;
   links?: Link[];
   /** Featured publications are visually emphasised */
   featured?: boolean;

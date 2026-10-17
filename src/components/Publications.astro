@@ -6,6 +6,7 @@ import { profile } from '@/data/profile';
 const typeLabel: Record<string, string> = {
   journal: 'Journal',
   conference: 'Conference',
+  workshop: 'Workshop',
   preprint: 'Preprint',
   thesis: 'Thesis',
   other: 'Other',
@@ -15,7 +16,7 @@ const typeLabel: Record<string, string> = {
 const byYear = Map.groupBy([...publications].sort((a, b) => b.year - a.year), (p) => p.year);
 ---
 
-<Section id="publications" title="Publications" number="02">
+<Section id="publications" title="Publications">
   {
     [...byYear].map(([year, pubs]) => (
       <div class="pub-year">
@@ -23,7 +24,15 @@ const byYear = Map.groupBy([...publications].sort((a, b) => b.year - a.year), (p
         <ol class="pub-list">
           {pubs.map((pub) => (
             <li class:list={['pub', { 'pub--featured': pub.featured }]}>
-              <p class="pub__title">{pub.title}</p>
+              <p class="pub__title">
+                {pub.href ? (
+                  <a href={pub.href} target="_blank" rel="noopener">
+                    {pub.title}
+                  </a>
+                ) : (
+                  pub.title
+                )}
+              </p>
               <p class="pub__authors">
                 {pub.authors.map((author, i) => (
                   <>
@@ -35,6 +44,7 @@ const byYear = Map.groupBy([...publications].sort((a, b) => b.year - a.year), (p
               <p class="pub__venue">
                 <span class="tag">{typeLabel[pub.type]}</span>
                 <em>{pub.venue}</em>
+                {pub.note && <span>· {pub.note}</span>}
               </p>
               {pub.links && (
                 <ul class="link-row">
@@ -92,6 +102,16 @@ const byYear = Map.groupBy([...publications].sort((a, b) => b.year - a.year), (p
     font-family: var(--font-serif);
     font-size: var(--text-lg);
     line-height: 1.35;
+  }
+
+  .pub__title a {
+    color: inherit;
+    text-decoration-color: var(--color-line);
+  }
+
+  .pub__title a:hover {
+    color: var(--color-accent);
+    text-decoration-color: currentColor;
   }
 
   .pub__authors {
