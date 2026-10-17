@@ -6,12 +6,11 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="container container--wide footer__inner">
-    <p>© {year} {profile.name}</p>
-    <nav aria-label="Legal">
-      <!-- In Austria (and Germany) a website usually needs an Impressum / Offenlegung. -->
-      <a href="/impressum">Impressum</a>
-      <a href="/privacy">Privacy</a>
-    </nav>
+    <!-- Offenlegung gemäß § 25 Abs. 5 MedienG: name + place of residence -->
+    <p>© {year} {profile.name} · Medieninhaber: {profile.name}, Wien</p>
+    <p>
+      Created using <a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a>
+    </p>
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
@@ -34,11 +33,6 @@ const year = new Date().getFullYear();
 
   .footer p {
     margin: 0;
-  }
-
-  nav {
-    display: flex;
-    gap: 1.25rem;
   }
 
   a {

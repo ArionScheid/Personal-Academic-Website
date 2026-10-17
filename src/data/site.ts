@@ -2,7 +2,7 @@
 export const site = {
   title: 'Arion Scheid',
   description:
-    'Arion Scheid, M.Sc. student at TU Wien working on probabilistic verification, explainable AI, theoretical machine learning and logic.',
+    'Arion Scheid, M.Sc. Logic and AI student at TU Wien, interested in probabilistic program verification, rewriting, explainable AI and logic.',
   lang: 'en',
 };
 

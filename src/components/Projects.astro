@@ -16,11 +16,13 @@ import { projects } from '@/data/projects';
               <span class="card__year">{project.year}</span>
             </div>
             <p>{project.description}</p>
-            <ul class="tag-list">
-              {project.tags.map((tag) => (
-                <li class="tag">{tag}</li>
-              ))}
-            </ul>
+            {project.tags.length > 0 && (
+              <ul class="tag-list">
+                {project.tags.map((tag) => (
+                  <li class="tag">{tag}</li>
+                ))}
+              </ul>
+            )}
           </div>
           {project.links && (
             <ul class="link-row card__links">

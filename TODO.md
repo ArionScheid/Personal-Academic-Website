@@ -15,7 +15,7 @@ Check:
 - [ ] Nav links scroll to each section; the active section is underlined while scrolling
 - [ ] Below ~700px window width the nav collapses into a ☰ menu that opens and closes
 - [ ] All external links (paper, slides, thesis PDF, LuFG 2, jckassing.com, profiles) open correctly
-- [ ] `/impressum`, `/privacy` and a random URL such as `/foo` (404 page) work
+- [ ] A random URL such as `/foo` shows the 404 page
 
 Then test the **production build**, which is exactly what Netlify will serve:
 
@@ -75,12 +75,11 @@ netlify deploy --build --prod      # publish to production
 
 Search the code for `TODO` to find each spot.
 
-- [ ] `cv.ts`: name of the M.Sc. programme at TU Wien
-- [ ] `socials.ts`: the email address to publish (and Instagram, if wanted)
+- [ ] `projects.ts`: Visual Learning Tool details once it's ready
+- [ ] `socials.ts`: Instagram, if wanted
 - [ ] `profile.ts`: a photo (put `me.jpg` in `public/images/` and set `photo: '/images/me.jpg'`)
 - [ ] `public/files/cv.pdf`: add your CV (or set `cvPdf: null` in `profile.ts`), then delete `public/files/README.txt`
 - [ ] `projects.ts`: refine the descriptions; add a repo link for "This Website" or remove that card
-- [ ] `impressum.astro` / `privacy.astro`: real legal text (Austria: Offenlegung per § 25 MedienG). This needs to be done **before** pointing the public domain at the site.
 
 ## 4. Ideas for later
 

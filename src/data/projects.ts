@@ -12,16 +12,15 @@ export const projects: Project[] = [
   {
     title: 'GNNExplainer: Seminar Study',
     description:
-      'Seminar work for “Theoretical Aspects of Machine Learning” at TU Wien, examining Ying et al.’s 2019 paper GNNExplainer: Generating Explanations for Graph Neural Networks.',
+      'Seminar work for “Theoretical Aspects of Machine Learning” at TU Wien, examining Ying et al.’s 2019 paper GNNExplainer: Generating Explanations for Graph Neural Networks, and a fatal flaw in the theory the paper rests upon.',
     tags: ['Explainable AI', 'Graph Neural Networks', 'LaTeX'],
     year: '2026',
     links: [{ label: 'GitHub', href: 'https://github.com/ArionScheid/Seminar-in-AI' }],
   },
   {
-    title: 'This Website',
-    description: 'My personal website: a static, dependency-light one-pager built with Astro and deployed on Netlify.',
-    tags: ['Astro', 'TypeScript', 'CSS'],
+    title: 'Visual Learning Tool',
+    description: 'A visual learning tool. Coming soon…',
+    tags: [],
     year: '2026',
-    // TODO: add the repository link once it's public (or remove this card)
   },
 ];

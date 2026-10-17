@@ -44,11 +44,9 @@ Requires Node 22+ (see `.nvmrc`).
 │   │   └── Icon.astro      Inline SVG icon set
 │   ├── layouts/
 │   │   ├── BaseLayout.astro   <html>/<head>, meta tags, fonts, global CSS
-│   │   └── ProseLayout.astro  Simple text pages (Impressum, privacy, 404)
+│   │   └── ProseLayout.astro  Simple text pages (404, future pages)
 │   ├── pages/              File-based routing: each file = one URL
 │   │   ├── index.astro     The main one-pager
-│   │   ├── impressum.astro
-│   │   ├── privacy.astro
 │   │   └── 404.astro
 │   └── styles/global.css   Design tokens (colours, fonts, spacing) + base styles
 ├── astro.config.mjs
