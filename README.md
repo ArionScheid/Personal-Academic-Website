@@ -25,7 +25,8 @@ Before pushing, run `npm run build` and `npm run check`. Both should finish with
 ```
 ├── cv/cv.html              Source of the public CV PDF (see "Updating the CV")
 ├── public/                 Static files copied as-is
-│   └── files/Arion_Scheid_CV.pdf
+│   ├── files/Arion_Scheid_CV.pdf
+│   └── images/me.jpg       Profile photo (640×640 square crop)
 ├── src/
 │   ├── data/               ★ ALL CONTENT LIVES HERE: edit these, not the components
 │   │   ├── site.ts         Site title, description, navigation
@@ -51,7 +52,7 @@ Before pushing, run `npm run build` and `npm run check`. Both should finish with
 - **Content**: edit the files in `src/data/`. Bio paragraphs, CV details and other strings support inline links written as `[text](url)`.
 - **Publications**: `type` is one of `journal`, `conference`, `workshop`, `preprint`, `thesis`, `other`. An optional `href` turns the title into a link, and `note` is shown after the venue (e.g. the presentation format).
 - **Colours, fonts, spacing**: edit the CSS variables at the top of `src/styles/global.css`.
-- **Photo**: put `me.jpg` in `public/images/` and set `photo: '/images/me.jpg'` in `profile.ts`.
+- **Photo**: replace `public/images/me.jpg` with a square image (about 640×640 px, ideally under 100 KB). The path is set by `photo` in `profile.ts`, and `photo: null` shows the initials instead.
 - **New section**: create `src/components/MySection.astro` using `<Section id="…" title="…">`, add it to `src/pages/index.astro`, and add `{ id, label }` to `nav` in `site.ts`.
 - **New social icon**: add the SVG path in `Icon.astro` and the name to `IconName` in `types.ts`.
 - **New page** (e.g. a blog): add a file in `src/pages/`.
@@ -84,7 +85,6 @@ The downloadable CV (`public/files/Arion_Scheid_CV.pdf`, referenced by `cvPdf` i
 ## Open items
 
 - [ ] `projects.ts`: details for the Visual Learning Tool once it's ready
-- [ ] `profile.ts`: add a photo
 - [ ] `socials.ts`: Instagram, if wanted
 
 Ideas for later: dark mode (the colour tokens are already set up for it), an Open Graph preview image, a sitemap (`@astrojs/sitemap`), generating publications from BibTeX, project detail pages or a blog via content collections, and a German/English toggle.
